@@ -6,7 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <style>
+        .input {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -73,9 +82,14 @@
             font-weight: 500;
         }
     </style>
+
 </head>
 
 <body>
+    <div class="input">
+        <input class="form-control" type="">
+        <button type="submit" class="btn btn-primary mt-2">Start</button>
+    </div>
     <div class="container">
         <div class="text-container">
             <!--             <h3 class="min">00</h3> -->
@@ -85,41 +99,52 @@
     </div>
 
     <script>
-        var container = document.querySelector(".container")
-var sec = document.querySelector(".sec")
-var min = document.querySelector(".min")
-var num = 360;
 
-const minute = 10;
-let duration = minute*60;
+        document.querySelector('button').addEventListener('click', ()=>{
+            /* console.log('aman'); */
+            var container = document.querySelector(".container")
+            var sec = document.querySelector(".sec")
+            var min = document.querySelector(".min")
+            var num = 360;
 
-var interval = setInterval(()=>{
-    if(duration>=0){
-        // min.textContent = `0${Math.floor(duration/60)}`
-        // if(duration%60 <10){
-            sec.textContent = `${(duration)}`
-        // }
-        // else{
-            // sec.textContent = `${(duration%60)}`
-        // }
-       
-        
-        container.style.setProperty("--a",num+"deg")
-       
-        const a = container.style.getPropertyValue("--a");
-        console.log(a);
-        
-        container.style.background = ` conic-gradient(#8b8bff var(--a) ,#8b8bff 0deg ,#585862d5 0deg,#585862d5 360deg)`
-        num = num - (num / duration);
-        duration--;
-   }
-   else{
-   
-       clearInterval(interval)
-   }
-  
+            const minute = document.querySelector('input').value;
+            let duration = minute * 60;
 
-},1000)
+            var interval = setInterval(() => {
+                if (duration >= 0) {
+                    // min.textContent = `0${Math.floor(duration/60)}`
+                    // if(duration%60 <10){
+                    sec.textContent = `${(duration)}`
+                    // }
+                    // else{
+                    // sec.textContent = `${(duration%60)}`
+                    // }
+
+
+                    container.style.setProperty("--a", num + "deg")
+
+                    const a = container.style.getPropertyValue("--a");
+                    /* console.log(a); */
+
+                    container.style.background = ` conic-gradient(#8b8bff var(--a) ,#8b8bff 0deg ,#585862d5 0deg,#585862d5 360deg)`
+                    num = num - (num / duration);
+                    duration--;
+                }
+                else {
+
+                    clearInterval(interval)
+                }
+
+
+            }, 1000)
+        });
+
+
+        function start() {
+            
+        }
+
+
     </script>
 </body>
 
