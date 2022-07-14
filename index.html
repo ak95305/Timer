@@ -100,7 +100,7 @@
 
     <script>
 
-        document.querySelector('button').addEventListener('click', ()=>{
+        document.querySelector('button').addEventListener('click', () => {
             /* console.log('aman'); */
             var container = document.querySelector(".container")
             var sec = document.querySelector(".sec")
@@ -108,7 +108,7 @@
             var num = 360;
 
             const minute = document.querySelector('input').value;
-            let duration = minute * 60;
+            let duration = minute * 6;
 
             var interval = setInterval(() => {
                 if (duration >= 0) {
@@ -131,8 +131,10 @@
                     duration--;
                 }
                 else {
-
+                    var snd = new Audio('/notification.mp3');
+                    snd.play();
                     clearInterval(interval)
+                    /* alert("All Done"); */
                 }
 
 
@@ -141,7 +143,7 @@
 
 
         function start() {
-            
+
         }
 
 
