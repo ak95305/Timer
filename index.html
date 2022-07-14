@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: black;
+        }
+
+        @property --a {
+            syntax: '<angle>';
+            inherits: false;
+            initial-value: 360deg;
+        }
+
+        .container {
+            --a: 360deg;
+            position: relative;
+            width: 40em;
+            height: 40em;
+            border-radius: 50%;
+            transition: --a 1s linear;
+            background: conic-gradient(#8b8bff var(--a), #8b8bff 0deg, #585862d5 0deg, #585862d5 360deg);
+            animation: animations 2s linear 1 forward;
+        }
+
+        .container::before {
+            position: absolute;
+            content: "";
+            width: 95%;
+            height: 95%;
+            background: black;
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            color: #fac7c78f;
+            transform: translate(-50%, -50%);
+        }
+
+        .text-container {
+            width: 70%;
+            height: 100px;
+            color: white;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.3em;
+            font-size: 3em;
+            transform: translate(-50%, -50%);
+
+        }
+
+        h3 {
+
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="text-container">
+            <!--             <h3 class="min">00</h3> -->
+            <!--             <h3 class="dot">:</h3> -->
+            <h3 class="sec">00</h3>
+        </div>
+    </div>
+
+    <script>
+        var container = document.querySelector(".container")
+var sec = document.querySelector(".sec")
+var min = document.querySelector(".min")
+var num = 360;
+
+const minute = 10;
+let duration = minute*60;
+
+var interval = setInterval(()=>{
+    if(duration>=0){
+        // min.textContent = `0${Math.floor(duration/60)}`
+        // if(duration%60 <10){
+            sec.textContent = `${(duration)}`
+        // }
+        // else{
+            // sec.textContent = `${(duration%60)}`
+        // }
+       
+        
+        container.style.setProperty("--a",num+"deg")
+       
+        const a = container.style.getPropertyValue("--a");
+        console.log(a);
+        
+        container.style.background = ` conic-gradient(#8b8bff var(--a) ,#8b8bff 0deg ,#585862d5 0deg,#585862d5 360deg)`
+        num = num - (num / duration);
+        duration--;
+   }
+   else{
+   
+       clearInterval(interval)
+   }
+  
+
+},1000)
+    </script>
+</body>
+
+</html>
